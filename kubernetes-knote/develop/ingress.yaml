@@ -10,13 +10,13 @@ spec:
    http:
       paths:  # it's will access / (root path) if we didn't specify
       - path: /
-      - backend:
+        backend:
           serviceName: knote #svc name
           servicePort: 80
  - host: sales.servers.com
    http:
       paths: 
       - path: /register
-      - backend:
+        backend:
           serviceName: knote-register # service name (svc)
           servicePort: 80
