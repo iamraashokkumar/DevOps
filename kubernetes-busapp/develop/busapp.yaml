@@ -16,12 +16,35 @@ spec:
         app: bus
         tier: frontend
     spec:
+      nodeSelector:
+              kubernetes.io/hostname: ip-192-165-155-192.us-east-2.compute.internal # node selector (assigning pods run on this node)
+
+      volumes:
+        - name: bus-app-vol
+          persistentVolumeClaim:
+                  claimName: busapp-vol1-pvc
+        #- name: tmp-vol1
+         # persistentVolumeClaim:
+          #        claimName: tmp-vol1-pvc
       containers:
         - name: busapp
           image: learnitguide/busapp:1.0
           ports:
             - containerPort: 8001
+          resources:
+            requests:
+              cpu: 100m
+              memory: 500Mi
+            limits:
+              cpu: 150m
+              memory: 750Mi
 
+            volumeMounts:
+                    - name: bus-app-vol
+                      mountPath: /tmp/ashoka/vol1
+                    #- name: tmp-vol1
+                    #  mountPath: /tmp/ashoka/vol2
+                  
 
 ---
 apiVersion: v1
