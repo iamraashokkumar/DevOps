@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: demo-ingress
+  annotations:
+          kubernetes.io/ingress.class: "nginx"
+spec:
+ rules:
+ - host: sales.servers.com
+   http:
+      paths:  # it's will access / (root path) if we didn't specify
+      - backend:
+          serviceName: knote #svc name
+          servicePort: 80
+
+ - host: sales.servers.com
+   http:
+      paths: /register
+      - backend:
+          serviceName: knote-register # service name (svc)
+          servicePort: 80
