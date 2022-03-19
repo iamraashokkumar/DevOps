@@ -8,15 +8,15 @@ spec:
  rules:
  - host: sales.servers.com
    http:
-      paths:  # it's will access / (root path) if we didn't specify
-      - path: /
-        backend:
-          serviceName: knote #svc name
-          servicePort: 80
+     paths:  # it's will access / (root path) if we didn't specify
+     - path: /
+       backend:
+         serviceName: knote #svc name
+         servicePort: 80
  - host: sales.servers.com
    http:
-      paths: 
-      - path: /register
-        backend:
-          serviceName: knote-register # service name (svc)
-          servicePort: 80
+     paths: 
+     - path: /register
+       backend:
+         serviceName: knote-register # service name (svc)
+         servicePort: 80
