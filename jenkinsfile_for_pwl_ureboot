@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+
+stages {
+   stage('password_less') {
+    steps {
+      sh label: 'password_less', script: '''cat /var/lib/jenkins/workspace/file/host-details ; User=ansible ; User2=root;for host in $(cat /var/lib/jenkins/workspace/file/host-details) ; do sshpass -f password.txt ssh-copy-id -o StrictHostKeyChecking=no $User@$host ; done ; 
+for host in $(cat /var/lib/jenkins/workspace/file/host-details) ; do sshpass -f password.txt ssh-copy-id -o StrictHostKeyChecking=no $User2@$host ; done
+'''
+    }
+  }
+    stage('Update_reboot') {
+    steps {
+      ansiblePlaybook credentialsId: 'ElevatedUser', disableHostKeyChecking: true, inventory: '/var/lib/jenkins/workspace/file/hosts', playbook: '/var/lib/jenkins/workspace/file/update_reboot.yml'
+    }
+  }
+}
+
+}

@@ -1,0 +1,35 @@
+Kubernetes commands:
+--------------------
+# kubectl get nodes
+# kubectl get pods
+# kubectl get deploy
+# kubectl get svc (service)
+# kubectl get ns (name space)
+# kubectl get sc (Storage class)
+
+How to deploy the images using yaml file:
+-----------------------------------------
+# kubectl apply -f application.yaml
+ 
+ 
+How to see the different environment:
+-------------------------------------
+# kubectl create ns develop or using yaml file.
+
+# kubectl -n develop get pods
+# kubectl -n qa get pods
+# kubectl -n develop get ns/svc
+# kubectl -n develop describe pods <pod_name>
+# kubectl -n develop delete pod <pod_name>
+
+Changing the version:
+---------------------
+We can use this command instead of editing the actual deploy file:
+------------------------------------------------------------------
+# kubectl -n develop set image deployment <deploy_name> <pod_name>=<image_name>
+# kubectl -n develop set image deployment busapp busapp=learnitguide/busapp:2.1.4
+
+we can ignore below command:
+----------------------------
+# kubectl apply -f ns.yaml
+# kubectl apply -f busapp.yaml

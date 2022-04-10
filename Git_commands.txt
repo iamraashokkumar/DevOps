@@ -1,0 +1,82 @@
+GIT commands:
+*************
+# git version
+
+
+Clone the git repository from github
+************************************
+# git clone https://github.com/iamraashokkumar/ansible.git 
+
+
+Before going to push you have to setup the below 
+************************************************
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+
+
+How to reset the if wrongly done rebase:
+****************************************
+$ git reflog
+90726c8 (HEAD -> mainmaster, origin/mainmaster) HEAD@{0}: reset: moving to 90726c8
+ed33400 (origin/main, origin/HEAD, main) HEAD@{1}: rebase: checkout mainmaster
+ed33400 (origin/main, origin/HEAD, main) HEAD@{2}: rebase: checkout main
+ed33400 (origin/main, origin/HEAD, main) HEAD@{3}: rebase: checkout main
+ed33400 (origin/main, origin/HEAD, main) HEAD@{4}: checkout: moving from 90726c8752991b1e8ac940b373ea5133ae79837e to main
+90726c8 (HEAD -> mainmaster, origin/mainmaster) HEAD@{5}: checkout: moving from mainmaster to remotes/origin/mainmaster
+ed33400 (origin/main, origin/HEAD, main) HEAD@{6}: checkout: moving from main to mainmaster
+ed33400 (origin/main, origin/HEAD, main) HEAD@{7}: clone: from https://github.com/iamraashokkumar/DevOps.git
+
+Ashoka@DESKTOP-DJBKDRI MINGW64 /e/DevOps/DevOps (mainmaster) $ git reset --hard 90726c8
+
+git restore
+
+Before going to push you have to setup the below 
+************************************************
+# git config --global user.email "you@example.com"
+# git config --global user.name "Your Name"
+
+Pushing the modified changes to github
+***************************************
+# git push -f origin main
+
+Branching:
+**********
+# git branch --- list all the branches 
+# git branch -d main --- delete the brach 
+# git branch -D main --- delete the brach
+# git checkout -b mainmaster --- it will create and switch it to mainmaster branch 
+
+
+[jenkins@fedora PollSCM]$ git branch
+* (HEAD detached from origin/main)
+[jenkins@fedora PollSCM]$
+
+[jenkins@fedora PollSCM]$ git checkout -b temp
+Switched to a new branch 'temp'
+[jenkins@fedora PollSCM]$
+
+[jenkins@fedora PollSCM]$ git branch
+* temp
+[jenkins@fedora PollSCM]$
+
+[jenkins@fedora PollSCM]$ git branch -a
+* temp
+  remotes/origin/main
+  remotes/origin/mainmaster
+[jenkins@fedora PollSCM]$ git checkout remotes/origin/main
+[jenkins@fedora PollSCM]$ git switch -c main
+
+ls -ltr
+echo "test" >> README.md
+git add .
+git commit -m "added through jenkins"
+git checkout -b remotes/origin/main
+git switch -c main
+git push origin mainmaster
+
+ls -ltr
+echo "test" >> README.md
+git add .
+git commit -m "added through jenkins"
+git remote add origin https://github.com/iamraashokkumar/DevOps.git
+git push origin main
